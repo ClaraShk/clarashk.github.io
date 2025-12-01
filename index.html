@@ -1,119 +1,466 @@
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3/org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script type="text/javascript">
-(function(){
-window["loaderConfig"] = "/TSPD/?type=21";
-})();
-
-</script>
-
-<script type="text/javascript" src="/TSPD/?type=18"></script>
-
-<meta http-equiv="Content-Language" content="en" />
-<meta http-equiv="content-type" content="text-html; charset=us-ascii" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Clara Shikhelman</title>
-<link rel="stylesheet" href="http://www.math.tau.ac.il/~clarashk/css/style.css" type="text/css" />
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-2103457-2']);
-_gaq.push(['_trackPageview']);
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --max-width: 1000px;
+            --spacing: 2rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-content .highlight {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            font-weight: 400;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        ul li a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .course-info {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        .course-num {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-left: 0.5rem;
+        }
+
+        /* Writing Section */
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .writing-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .writing-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .writing-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .writing-item .date {
+            color: var(--text-light);
+            font-size: 0.9em;
+            margin-bottom: 0.5rem;
+        }
+
+        .writing-item p {
+            color: var(--text-color);
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-image {
+                max-width: 200px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .writing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 2rem 0;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<div id="head">
-<h1>Clara Shikhelman :: קלרה שיכלמן</h1>
+    <header>
+        <div class="container">
+            <h1>Clara Shikhelman</h1>
+            <div class="subtitle">קלרה שיכלמן</div>
 </div>
+    </header>
 
-<div id="body">
-<img src="a.jpg" alt=" " height="250px">
-<!--
-<div class="info">
-<div><a href="http://www.math.tau.ac.il">School of Mathematical Sciences</a></div>
-<div><a href="http://www.tau.ac.il/exact_sciences">Sackler Faculty of Exact Sciences</a></div>
-<div><a href="http://www.tau.ac.il">Tel-Aviv University</a></div>
-<div><span>E-mail:</span> <a href="mailto:clarashk@mail.tau.ac.il">clarashk@mail.tau.ac.il</a></div>
-<span>Office:</span> Schreiber Building, Open Space, Room 1.<br/>
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="a.jpg" alt="Clara Shikhelman" class="hero-image">
+            <div class="hero-content">
+                <h2>About</h2>
+                <p>
+                    I am currently the <span class="highlight">Head of Research at ChainCode Labs</span>, 
+                    where I lead research initiatives in blockchain technology and cryptoeconomics. 
+                    Previously, I was at the Simons Institute for the Theory of Computing at Berkeley and at CalTech.
+                </p>
+                <p>
+                    I graduated from Tel Aviv University with a <span class="highlight">PhD in Mathematics</span> 
+                    under the supervision of <a href="http://www.tau.ac.il/~nogaa/">Prof. Noga Alon</a>. 
+                    My thesis was titled 'Generalized Turán Type Problems and other Questions'. 
+                    I completed my master's degree at the Weizmann Institute under 
+                    <a href="http://www.ma.huji.ac.il/~ehudf/">Prof. Ehud Friedgut</a>, 
+                    with a thesis titled <a href="files/Thesis.pdf">Thresholds of monotone properties with small minterms</a>.
+                </p>
 </div>
-<!-- <span>Phone:</span> 03-640xxxx -->
+        </section>
 
+        <!-- Writing Section -->
+        <section id="writing">
+            <h2>Writing</h2>
+            <div class="writing-grid">
+                <div class="writing-item">
+                    <h3>What Happens to Bitcoin When Quantum Computers Arrive?</h3>
+                    <div class="date">June 20, 2024 • Bitcoin Magazine</div>
+                    <p>A high-level overview of the recent report by Chaincode Labs on the threat quantum computing poses to Bitcoin. Co-authored with Anthony Milton, this article explores timelines, threat models, and migration strategies for quantum-resistant cryptography.</p>
+                    <a href="https://bitcoinmagazine.com/technical/what-happens-to-bitcoin-when-quantum-computers-arrive" target="_blank" rel="noopener noreferrer">Read more →</a>
+                </div>
+                <div class="writing-item">
+                    <h3>Bitcoin's CRQC Response Playbook</h3>
+                    <div class="date">GitHub Repository</div>
+                    <p>A contingency framework for Bitcoin's response to Cryptographically Relevant Quantum Computers (CRQCs). This playbook outlines implementation requirements, three-team coordination structure, and a timeline for achieving quantum resistance while maintaining network continuity.</p>
+                    <a href="https://github.com/deadmanoz/bitcoin-crqc-response-playbook" target="_blank" rel="noopener noreferrer">View repository →</a>
+                </div>
+                <!-- Add more writing items as needed -->
+            </div>
+        </section>
 
-
-<h2>About</h2>
-<!--<div style="margin-left: 20px">-->
-<ul class="teaching">
-<li>I am currently the head of research at <a href="https://chaincode.com/">ChainCode Labs</a>. Previously, I was at the Simons Institute for the Theory of Computing at Berkley and at CalTech. </li>
-<li>I graduated Tel Aviv university with a PhD in mathematics.  My advisor was <a href="http://www.tau.ac.il/~nogaa/">Prof. Noga Alon</a>, the thesis was titled 'Generalized Turán Type Problems and other Questions'.
-<li>I completed my master's degree at the Weizmann Institute. My advisor was <a href="http://www.ma.huji.ac.il/~ehudf/">Prof. Ehud Friedgut</a>, the thesis was titled <a href="files/Thesis.pdf"> Thresholds of monotone properties with small minterms</a>. </li>
-</ul>
-
-<!--
-<h2>Teaching</h2>
-<ul class="teaching">
-
-<li> Linear Algebra (for Engineers), Lecturer, <span class="course-info">Fall 2017.</span></li>
-<li> Introduction to combinatorics and graph theory , Lecturer, <span class="course-info">Spring 2017.</span></li>
-<li> Linear Algebra (for Engineers), Lecturer, <span class="course-info">Fall 2016.</span></li>
-<li>Linear Algebra 2A, TA,  <span class="course-info">Spring 2016, Lecturer: Yehuda Shalom.</span></li> </li>
-<li>Linear Algebra 2B, TA, <span class="course-info">Spring 2016, Lecturer: Anna Gurevich.</span></li> </li>
-<li> Linear Algebra (for Engineers), Lecturer, </a> <span class="course-info">Fall 2015.</span></li>
-<li>Linear Algebra 2A, TA,  <span class="course-info">Spring 2015, Lecturer: Yuli Eidelman.</span></li> </li>
-<li>Linear Algebra 2B, TA,<span class="course-info"> Spring 2015, Lecturer: Anna Gurevich.</span></li> </li>
-<li>Introduction to Discrete Mathematics (for Engineers), Lecturer,  <span class="course-info"> Fall 2014.</span></li>
-<li>Linear Algebra (for Engineers), TA, <span class="course-info"> Fall 2014, Lecturer: Ran Azouri.</span></li> </li>
+        <!-- Selected Talks -->
+        <section id="talks">
+            <h2>Selected Talks</h2>
+            <ul>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=FNqYU9TudRU">Bitcoin and Quantum Computing: Current Status and Future Prospects</a>
+                    <span class="course-num">Presidio</span>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=vP4DqMgOuiI">Ignore the Extra Zeroes: Variance-Optimal Mining Pools</a>
+                    <span class="course-num">FC'21</span>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=S8FkBN2X__I&t=403s">Lightning Network Economics: Cost-Minimal Channels and their Implications for Network Structure</a>
+                    <span class="course-num">Simons Institute</span>
 </li>
 </ul>
--->
+        </section>
 
-<h2>Selected Talks</h2>
-<ul class="teaching">
-<li><a class="course" href="https://www.youtube.com/watch?v=vP4DqMgOuiI"> Ignore the Extra Zeroes: Variance-Optimal Mining Pools,</a><span class="course-num"> FC'21</span> 
-<li><a class="course" href="https://www.youtube.com/watch?v=S8FkBN2X__I&t=403s"> Lightning Network Economics: Cost-Minimal Channels and their Implications for Network Structure,</a><span class="course-num"> Simons Institute</span>
+        <!-- Media Section -->
+        <section id="media">
+            <h2>Selected Interviews</h2>
+            <ul>
+                <li>
+                    <a href="https://stephanlivera.com/episode/670/">Stephan Livera Podcast - Episode 670: Quantum Threat to Bitcoin</a>
+                    <span class="course-info">With Anthony Milton</span>
+                    <span class="course-num">2024</span>
+                </li>
+                <li>
+                    <a href="https://www.accesstribe.com/p/at18-clara-shikhelman-head-of-research-79c">Access Tribe Bitcoin - AT18: Head of Research at Chaincode Labs</a>
+                    <span class="course-num">2024</span>
+                </li>
+                <li>
+                    <a href="https://www.coindesk.com/markets/2020/07/12/listen-what-a-bitcoin-researcher-says-about-lightning">CoinDesk: What a Bitcoin Researcher Says About Lightning</a>
+                    <span class="course-num">2020</span>
+                </li>
 </ul>
-
+        </section>
   
-
+        <!-- Papers -->
+        <section id="papers">
 <h2>Papers</h2>
-<ul class="teaching">
-<li><a class="course" href="https://cryptoeconomicsystems.pubpub.org/pub/maypoles-lightning/release/1?readingCollection=2f054553"> Maypoles: Lightning Striking Twice,</a> <span class="course-info"></span></li> <span class="course-num"> Cryptoeconomic Systems 2023</span>
-<li><a class="course" href="https://eprint.iacr.org/2022/1454"> Unjamming Lightning: A Systematic Approach,</a> <span class="course-info">Joint with S. Tikhomirov</span></li> <span class="course-num"></span>
-<li><a class="course" href=https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4439190> Lightning Network Economics: Topology,</a> <span class="course-info">Joint with G. Huberman and P. Guasoni</span></li> <span class="course-num">Management Science, to appear</span>
-<li><a class="course" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3840374"> Lightning Network Economics: Channels,</a> <span class="course-info">Joint with G. Huberman and P. Guasoni</span></li> <span class="course-num">Management Science, 70, Issue 6</span>
-<li><a class="course" href="https://fc21.ifca.ai/papers/171.pdf"> Ignore the Extra Zeroes: Variance-Optimal Mining Pools,</a> <span class="course-info">Joint with T. Roughgarden</span></li> <span class="course-num">FC2021</span>
-<li><a class="course" href="https://eprint.iacr.org/2020/1433.pdf"> Interactive Proofs for Social Graphs,</a> <span class="course-info">Joint with L. Katzir, and E. Yogev</span></li> <span class="course-num">Crypto2020</span>
-<li><a class="course" href=""> Greedy maximal independent sets via local limits,</a> <span class="course-info">Joint with M. Krivelevich, T. Meszaros and P. Michaeli</span></li> <span class="course-num">AOFA2020</span>
-<li><a class="course" href="files/UnifAlg4.pdf"> Additive Approximation of Generalized Turán Questions</a> <span class="course-info">Joint with Noga Alon</span></li> <span class="course-num"> Algorithmica (2022)</span>
-<li><a class="course" href="files/T-copies-H-free.pdf"> A generalized Turán problem in random graphs</a> <span class="course-info">Joint with Wojciech Samotij</span></li> <span class="course-num">Random Structures and Algorithms 2019, 123 (2019)</span>
-<li><a class="course" href="https://arxiv.org/abs/1805.02259">Semi-random graph process</a> <span class="course-info">Joint with Omri Ben-Eliezer, Dan Hefetz, Gal Kronenberg, Olaf Parczyk and Miloš Stojaković</span></li> <span class="course-num">Random Structures and Algorithms 2020</span>
-<li><a class="course" href="files/densehfree1.pdf">H-free subgraphs of dense graphs maximizing the number of cliques and their blow-ups</a> <span class="course-info">Joint with Noga Alon</span></li> <span class="course-num">Discrete Mathematics, 342, Issue 4, 988-996 (2019)</span>
-<li><a class="course" href="files/randhfree8.pdf">Many cliques in H-free subgraphs of random graphs</a> <span class="course-info">Joint with Noga Alon and Alexandr Kostochka</span></li> <span class="course-num">J. of Combinatorics, 9.4, 567 – 597 (2018)</span>
-<li><a class="course" href="files/thfree12.pdf">Many T copies in H-free graphs</a> <span class="course-info">Joint with Noga Alon</span></li> <span class="course-num">J. Combinatorial Theory, Ser. B, 121, 146-172, (2016)</span>
-<li><a class="course" href="https://arxiv.org/abs/1506.06325">On the Converse of Talagrand's Influence Inequality</a> <span class="course-info">Joint with Saleet Klein, Amit Levi, Muli Safra and Yinon Spinka</span></li> <span class="course-num">Available on the arXiv</span>
-<li><a class="course" href="files/4769-14011-2-PB (1).pdf">Thresholds and expectation-thresholds of monotone properties with small minterms</a> <span class="course-info">Joint with Ehud Friedgut and Jeff Kahn</span></li> <span class="course-num"> Electronic Journal of Combinatorics, 22 (2015)</span>
-<li><a class="course" href="http://link.springer.com/article/10.1007%2Fs13398-012-0112-4">Algebraic geometry of Abel differential equation</a> <span class="course-info">Joint with Shira Giat, Yonatan Shelah, and Yosef Yomdin</span></li> <span class="course-num">Revista de la Real Academia de Ciencias Exactas, Fisicas y Naturales. Serie A. Matematicas, (2014)</span>
+            <ul>
+                <li>
+                    <a href="https://chaincode.com/bitcoin-post-quantum.pdf">Bitcoin and Quantum Computing: Current Status and Future Directions</a>
+                    <span class="course-info">Joint with A. Milton</span>
+                    <span class="course-num">May 2025</span>
+                </li>
+                <li>
+                    <a href="https://cryptoeconomicsystems.pubpub.org/pub/maypoles-lightning/release/1?readingCollection=2f054553">Maypoles: Lightning Striking Twice</a>
+                    <span class="course-info"></span>
+                    <span class="course-num">Cryptoeconomic Systems 2023</span>
+                </li>
+                <li>
+                    <a href="https://eprint.iacr.org/2022/1454">Unjamming Lightning: A Systematic Approach</a>
+                    <span class="course-info">Joint with S. Tikhomirov</span>
+                </li>
+                <li>
+                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4439190">Lightning Network Economics: Topology</a>
+                    <span class="course-info">Joint with G. Huberman and P. Guasoni</span>
+                    <span class="course-num">Management Science, to appear</span>
+                </li>
+                <li>
+                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3840374">Lightning Network Economics: Channels</a>
+                    <span class="course-info">Joint with G. Huberman and P. Guasoni</span>
+                    <span class="course-num">Management Science, 70, Issue 6</span>
+                </li>
+                <li>
+                    <a href="https://fc21.ifca.ai/papers/171.pdf">Ignore the Extra Zeroes: Variance-Optimal Mining Pools</a>
+                    <span class="course-info">Joint with T. Roughgarden</span>
+                    <span class="course-num">FC2021</span>
+                </li>
+                <li>
+                    <a href="https://eprint.iacr.org/2020/1433.pdf">Interactive Proofs for Social Graphs</a>
+                    <span class="course-info">Joint with L. Katzir, and E. Yogev</span>
+                    <span class="course-num">Crypto2020</span>
+                </li>
+                <li>
+                    <a href="">Greedy maximal independent sets via local limits</a>
+                    <span class="course-info">Joint with M. Krivelevich, T. Meszaros and P. Michaeli</span>
+                    <span class="course-num">AOFA2020</span>
+                </li>
+                <li>
+                    <a href="files/UnifAlg4.pdf">Additive Approximation of Generalized Turán Questions</a>
+                    <span class="course-info">Joint with Noga Alon</span>
+                    <span class="course-num">Algorithmica (2022)</span>
+                </li>
+                <li>
+                    <a href="files/T-copies-H-free.pdf">A generalized Turán problem in random graphs</a>
+                    <span class="course-info">Joint with Wojciech Samotij</span>
+                    <span class="course-num">Random Structures and Algorithms 2019, 123 (2019)</span>
+                </li>
+                <li>
+                    <a href="https://arxiv.org/abs/1805.02259">Semi-random graph process</a>
+                    <span class="course-info">Joint with Omri Ben-Eliezer, Dan Hefetz, Gal Kronenberg, Olaf Parczyk and Miloš Stojaković</span>
+                    <span class="course-num">Random Structures and Algorithms 2020</span>
+                </li>
+                <li>
+                    <a href="files/densehfree1.pdf">H-free subgraphs of dense graphs maximizing the number of cliques and their blow-ups</a>
+                    <span class="course-info">Joint with Noga Alon</span>
+                    <span class="course-num">Discrete Mathematics, 342, Issue 4, 988-996 (2019)</span>
+                </li>
+                <li>
+                    <a href="files/randhfree8.pdf">Many cliques in H-free subgraphs of random graphs</a>
+                    <span class="course-info">Joint with Noga Alon and Alexandr Kostochka</span>
+                    <span class="course-num">J. of Combinatorics, 9.4, 567 – 597 (2018)</span>
+                </li>
+                <li>
+                    <a href="files/thfree12.pdf">Many T copies in H-free graphs</a>
+                    <span class="course-info">Joint with Noga Alon</span>
+                    <span class="course-num">J. Combinatorial Theory, Ser. B, 121, 146-172, (2016)</span>
+                </li>
+                <li>
+                    <a href="https://arxiv.org/abs/1506.06325">On the Converse of Talagrand's Influence Inequality</a>
+                    <span class="course-info">Joint with Saleet Klein, Amit Levi, Muli Safra and Yinon Spinka</span>
+                    <span class="course-num">Available on the arXiv</span>
+                </li>
+                <li>
+                    <a href="files/4769-14011-2-PB (1).pdf">Thresholds and expectation-thresholds of monotone properties with small minterms</a>
+                    <span class="course-info">Joint with Ehud Friedgut and Jeff Kahn</span>
+                    <span class="course-num">Electronic Journal of Combinatorics, 22 (2015)</span>
+                </li>
+                <li>
+                    <a href="http://link.springer.com/article/10.1007%2Fs13398-012-0112-4">Algebraic geometry of Abel differential equation</a>
+                    <span class="course-info">Joint with Shira Giat, Yonatan Shelah, and Yosef Yomdin</span>
+                    <span class="course-num">Revista de la Real Academia de Ciencias Exactas, Fisicas y Naturales. Serie A. Matematicas, (2014)</span>
+                </li>
 </ul>
+        </section>
+
+        <!-- Other Activities -->
+        <!--
+        <section id="activities">
 <h2>Other Activities</h2>
-<ul class="teaching">
-<li><a class="course" href="http://www.math.tau.ac.il/~galkrone/GCseminar/">Student seminar on Graph Coloring</a></span></li>
-<li><a class="course" href="http://www.math.tau.ac.il/~clarashk/GHseminar/">Student Seminat on Graph Homomorphisms and Graph Limits</a></span></li>
-<li><a class="course" href="https://exact-sciences.tau.ac.il/math/twim/summer_conf2015/">The First Israeli conference for Woman in Mathematics</span></li>
-<li><a class="course" href="https://www.youtube.com/watch?v=Kw7f5VBfMzY&list=PLNiWLB_wsOg4Jp9VZX3SG5Tj00y1FgB3h&index=4">Alice in Wonderland and Mathematics [Hebrew]</a></span></li>
-<li><a class="course" href="http://www.nobel4education.org/about-3.html">Nobel Laureates for Excellence in Education</a></span></li>
+            <ul>
+                <li>
+                    <a href="http://www.math.tau.ac.il/~galkrone/GCseminar/">Student seminar on Graph Coloring</a>
+                </li>
+                <li>
+                    <a href="http://www.math.tau.ac.il/~clarashk/GHseminar/">Student Seminar on Graph Homomorphisms and Graph Limits</a>
+                </li>
+                <li>
+                    <a href="https://exact-sciences.tau.ac.il/math/twim/summer_conf2015/">The First Israeli conference for Women in Mathematics</a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=Kw7f5VBfMzY&list=PLNiWLB_wsOg4Jp9VZX3SG5Tj00y1FgB3h&index=4">Alice in Wonderland and Mathematics [Hebrew]</a>
+                </li>
+                <li>
+                    <a href="http://www.nobel4education.org/about-3.html">Nobel Laureates for Excellence in Education</a>
+                </li>
 </ul>
+        </section>
+        -->
+    </main>
 
-
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Clara Shikhelman</p>
 </div>
-
-
+    </footer>
 </body>
 </html>
